@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User -> Computer: Provide file name
+Computer -> Input: Get File
+Input -> Computer: Provide file
+Computer -> Computer: Initial analysis of file
+Computer -> User: Proposal of input fields placement
+User -> Computer: Provides return information
+Computer -> Computer: Setup setting according to the information return from User
+Computer -> Computer: Perform Operations on file
+Computer -> Computer: Data Extraction and prepation output file
+Computer -> Computer: Setup output file name to provided with different extension
+Computer -> User: Proposal of change default output file name
+User -> Computer: Provides return information
+Computer -> Computer: Set output file name according to return information
+Computer -> Output: Save Output file
+
+'TODO:1. Biblioteka do wyświetlania pliku i wskazywania pliku (drzewo katalogu)
+      '4. Funkcja do określenia czy w danym pliku jest słowo :retina" albo "disc"
+      '5. Biblioteka do wyświetlania i obrazu i zaznaczania prostokątów
+      '8. Możliwość wyciągania z obrazka tekstu i zapisywania go jako zmiennych
+      '10. Biblioteke do zapisywania danych w excelu
+
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Split input image on small ones with tables;
+
+repeat
+:Select cell with image data;
+:Convert image data to string;
+:assign string to variable;
+repeat while (Is there more data to assign?) is (yes)
+-> no;
+stop
+
+@enduml
