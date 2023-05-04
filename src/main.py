@@ -3,6 +3,10 @@ import re
 from PIL import Image
 from enum import Enum
 
+from PyQt5.QtWidgets import QApplication
+
+from gui.image_window_with_rectangles import ImageWindowWithRectangles
+
 
 class FileType(Enum):
     RETINA = ["retina", [0, 0], [10, 10]]
@@ -33,20 +37,19 @@ file_type = FileType.NOT_FOUND
 for type in FileType:
     if type == FileType.NOT_FOUND:
         continue
-    if(find_if_word_occured_in_text(input_file_path, type.value[0])):
+    if find_if_word_occured_in_text(input_file_path, type.value[0]):
         file_type = type
         break
 
 print(file_type)
-# if find_if_word_occured_in_text(input_file_path, "retina") == True:
-#     print("retina found")
-# elif find_if_word_occured_in_text(input_file_path, "disc") == True:
-#     print("disc found")
-# else:
-#     print("unknown file")
 
 try:
-    im = Image.open(input_file_path)
-    im.show()
+    app_image_window = QApplication(sys.argv)
+    image_window = ImageWindowWithRectangles(input_file_path)
+    image_window.show()
+    app_image_window.exec_()
+    # im = Image.open(input_file_path)
+    # im.show()
 except FileNotFoundError:
     print("file not found for path: " + input_file_path)
+
