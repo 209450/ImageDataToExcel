@@ -47,9 +47,11 @@ try:
     app_image_window = QApplication(sys.argv)
     image_window = ImageWindowWithRectangles(input_file_path)
     image_window.show()
+
+    image_window.draw_rectangle((100, 100), (300, 200))
+
     app_image_window.exec_()
     # im = Image.open(input_file_path)
     # im.show()
 except FileNotFoundError:
     print("file not found for path: " + input_file_path)
-
