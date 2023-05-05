@@ -65,6 +65,12 @@ try:
         form = FormChangeRectangleCoordinates(image_window, file_type.value[1])
         form.show()
 
+        form_result = form.exec_()
+        if form_result:
+            rectangles.extend(form.get_fields_values())
+        else:
+            rectangles.extend(file_type.value[1])
+
 
     app_image_window.exec_()
     # im = Image.open(input_file_path)

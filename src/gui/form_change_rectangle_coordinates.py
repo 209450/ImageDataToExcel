@@ -5,6 +5,7 @@ class FormChangeRectangleCoordinates(QDialog):
 
     def __init__(self, parent, rectangles):
         super(FormChangeRectangleCoordinates, self).__init__(parent)
+        self.return_rectangles = rectangles
 
         self.edit_fields = []
         for index, rectangle in enumerate(rectangles):
@@ -19,6 +20,7 @@ class FormChangeRectangleCoordinates(QDialog):
             self.edit_fields.extend([edit_field_x1, edit_field_y1, edit_field_x2, edit_field_y2])
 
         self.button = QPushButton("Accept")
+        self.button.clicked.connect(self.form_accepted)
 
         widgets = []
         widgets.extend(self.edit_fields)
@@ -29,3 +31,9 @@ class FormChangeRectangleCoordinates(QDialog):
             layout.addWidget(widget)
 
         self.setLayout(layout)
+
+    def form_accepted(self):
+        self.accept()
+
+    def get_fields_values(self):
+        return self.return_rectangles
