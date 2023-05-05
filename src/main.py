@@ -3,9 +3,10 @@ import re
 from PIL import Image
 from enum import Enum
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from data_structures.rectangle_coordinates import RectangleCoordinates
+from gui.form_change_rectangle_coordinates import FormChangeRectangleCoordinates
 from gui.image_window_with_rectangles import ImageWindowWithRectangles
 
 
@@ -55,6 +56,15 @@ try:
 
     for rectangle in file_type.value[1]:
         image_window.draw_rectangle(rectangle.top_left, rectangle.bottom_right)
+
+    rectangles = []
+    message_box_answer = QMessageBox.question(image_window, "Rectangles placement", "Do the coordinates of rectangle are valid?")
+    if message_box_answer == QMessageBox.Yes:
+        rectangles.extend(file_type.value[1])
+    else:
+        form = FormChangeRectangleCoordinates(image_window, file_type.value[1])
+        form.show()
+
 
     app_image_window.exec_()
     # im = Image.open(input_file_path)
