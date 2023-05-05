@@ -18,11 +18,4 @@ User -> Computer: Provides return information
 Computer -> Computer: Set output file name according to return information
 Computer -> Output: Save Output file
 
-'TODO:1. Biblioteka do wyświetlania pliku i wskazywania pliku (drzewo katalogu)
-      '4. Funkcja do określenia czy w danym pliku jest słowo :retina" albo "disc"
-      '5. Biblioteka do wyświetlania i obrazu i zaznaczania prostokątów
-      '8. Możliwość wyciągania z obrazka tekstu i zapisywania go jako zmiennych
-      '10. Biblioteke do zapisywania danych w excelu
-
-
 @enduml

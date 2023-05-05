@@ -5,26 +5,39 @@ from enum import Enum
 
 from PyQt5.QtWidgets import QApplication
 
+from data_structures.rectangle_coordinates import RectangleCoordinates
 from gui.image_window_with_rectangles import ImageWindowWithRectangles
 
 
 class FileType(Enum):
-    RETINA = ["retina", [0, 0], [10, 10]]
-    DISC = ["disc", [[0, 0], [10, 10]], [[0, 0], [10, 10]]]
-    ANTERIOR_RADIAL = ["anterior_radial", [0, 0], [10, 10]]
+    RETINA = ["retina", [RectangleCoordinates(0, 0, 100, 100)]]
+    DISC = ["disc", [RectangleCoordinates(100, 100, 200, 200),
+                     RectangleCoordinates(300, 300, 400, 400)]]
+    ANTERIOR_RADIAL = ["anterior_radial", [RectangleCoordinates(500, 500, 600, 600)]]
     ANTERIOR_3D = ["anterior_3d"]
     NOT_FOUND = ["not found"]
 
 
-def find_if_word_occured_in_text(text, word):
+def find_if_word_was_found_in_text(text, word):
     lower_word = word.lower()
     lower_text = text.lower()
 
-    word_occurence_indexes = re.findall(lower_word, lower_text)
-    if len(word_occurence_indexes) == 0:
+    word_occurrence_indexes = re.findall(lower_word, lower_text)
+    if len(word_occurrence_indexes) == 0:
         return False
     else:
         return True
+
+
+def check_input_file_type(input_file_path):
+    file_type = FileType.NOT_FOUND
+    for type in FileType:
+        if type == FileType.NOT_FOUND:
+            continue
+        if find_if_word_was_found_in_text(input_file_path, type.value[0]):
+            file_type = type
+            break
+    return file_type
 
 
 print("Program started")
@@ -32,15 +45,7 @@ print(sys.argv)
 print(sys.argv[1])
 
 input_file_path = sys.argv[1]
-
-file_type = FileType.NOT_FOUND
-for type in FileType:
-    if type == FileType.NOT_FOUND:
-        continue
-    if find_if_word_occured_in_text(input_file_path, type.value[0]):
-        file_type = type
-        break
-
+file_type = check_input_file_type(input_file_path)
 print(file_type)
 
 try:
@@ -48,7 +53,8 @@ try:
     image_window = ImageWindowWithRectangles(input_file_path)
     image_window.show()
 
-    image_window.draw_rectangle((100, 100), (300, 200))
+    for rectangle in file_type.value[1]:
+        image_window.draw_rectangle(rectangle.top_left, rectangle.bottom_right)
 
     app_image_window.exec_()
     # im = Image.open(input_file_path)

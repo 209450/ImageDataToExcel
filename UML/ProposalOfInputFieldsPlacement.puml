@@ -12,4 +12,9 @@ else (false)
     :User provides new coordinates;
 endif
 stop
+
+'Output:
+'Change enum's value for user's changed ones
+'If enum can not be changed, assign values to new variable
+
 @enduml

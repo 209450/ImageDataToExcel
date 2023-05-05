@@ -24,4 +24,4 @@ class ImageWindowWithRectangles(QMainWindow):
 
         rectangle = QRect(QPoint(x1, y1), QPoint(x2, y2))
         self.painter.drawRect(rectangle)
-        self.painter.end()
+        # self.painter.end()
