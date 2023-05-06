@@ -25,3 +25,9 @@ class ImageWindowWithRectangles(QMainWindow):
         rectangle = QRect(QPoint(x1, y1), QPoint(x2, y2))
         self.painter.drawRect(rectangle)
         # self.painter.end()
+
+    def draw_label(self, coordinates, text):
+        x, y = coordinates
+        point = QPoint(x, y)
+
+        self.painter.drawText(point, text)

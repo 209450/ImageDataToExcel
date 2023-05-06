@@ -53,26 +53,28 @@ app_image_window = QApplication(sys.argv)
 image_window = ImageWindowWithRectangles(input_file_path)
 image_window.show()
 
-table_rectangles = []
+table_rectangles = list(file_type.value[1])
 placement_of_rectangles_is_not_correct = True
 
 while placement_of_rectangles_is_not_correct:
-    for rectangle in file_type.value[1]:
+    for index, rectangle in enumerate(table_rectangles):
         image_window.draw_rectangle(rectangle.top_left, rectangle.bottom_right)
+
+        label_padding_y = 5
+        label_coordinates = (rectangle.top_left[0], rectangle.top_left[1] - label_padding_y)
+        image_window.draw_label(label_coordinates, str(index))
 
     message_box_answer = QMessageBox.question(image_window, "Rectangles placement", "Do the coordinates of rectangle are "
                                                                                     "valid?")
     if message_box_answer == QMessageBox.Yes:
-        table_rectangles.extend(file_type.value[1])
         placement_of_rectangles_is_not_correct = False
     else:
-        form = FormChangeRectangleCoordinates(image_window, file_type.value[1])
+        form = FormChangeRectangleCoordinates(image_window, table_rectangles)
         form.show()
 
         form_result = form.exec_()
         if form_result:
             table_rectangles.extend(form.get_fields_values())
-        else:
-            table_rectangles.extend(file_type.value[1])
+
 
 app_image_window.exec_()
