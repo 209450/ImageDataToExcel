@@ -74,7 +74,7 @@ while placement_of_rectangles_is_not_correct:
 
         form_result = form.exec_()
         if form_result:
-            table_rectangles.extend(form.get_fields_values())
+            table_rectangles = list(form.get_fields_values())
 
 
 app_image_window.exec_()
