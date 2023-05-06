@@ -9,6 +9,29 @@ class ImageWindowWithRectangles(QMainWindow):
         super().__init__()
 
         self.image = QPixmap(image_path)
+
+        self.label = QLabel()
+        self.painter = QPainter()
+        self.pen = QPen()
+        self.initialize_image_to_draw()
+
+    def draw_rectangle(self, top_left, bottom_right):
+        x1, y1 = top_left
+        x2, y2 = bottom_right
+
+        rectangle = QRect(QPoint(x1, y1), QPoint(x2, y2))
+        self.painter.drawRect(rectangle)
+
+    def draw_label(self, coordinates, text):
+        x, y = coordinates
+        point = QPoint(x, y)
+
+        self.painter.drawText(point, text)
+
+    def clear_drawings(self):
+        self.initialize_image_to_draw()
+
+    def initialize_image_to_draw(self):
         self.label = QLabel()
         self.label.setPixmap(self.image)
         self.setCentralWidget(self.label)
@@ -17,17 +40,3 @@ class ImageWindowWithRectangles(QMainWindow):
         self.pen = QPen()
         self.pen.setColor(QColor("red"))
         self.painter.setPen(self.pen)
-
-    def draw_rectangle(self, top_left, bottom_right):
-        x1, y1 = top_left
-        x2, y2 = bottom_right
-
-        rectangle = QRect(QPoint(x1, y1), QPoint(x2, y2))
-        self.painter.drawRect(rectangle)
-        # self.painter.end()
-
-    def draw_label(self, coordinates, text):
-        x, y = coordinates
-        point = QPoint(x, y)
-
-        self.painter.drawText(point, text)

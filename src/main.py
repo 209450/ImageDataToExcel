@@ -57,6 +57,8 @@ table_rectangles = list(file_type.value[1])
 placement_of_rectangles_is_not_correct = True
 
 while placement_of_rectangles_is_not_correct:
+
+    image_window.clear_drawings()
     for index, rectangle in enumerate(table_rectangles):
         image_window.draw_rectangle(rectangle.top_left, rectangle.bottom_right)
 
@@ -64,8 +66,9 @@ while placement_of_rectangles_is_not_correct:
         label_coordinates = (rectangle.top_left[0], rectangle.top_left[1] - label_padding_y)
         image_window.draw_label(label_coordinates, str(index))
 
-    message_box_answer = QMessageBox.question(image_window, "Rectangles placement", "Do the coordinates of rectangle are "
-                                                                                    "valid?")
+    message_box_answer = QMessageBox.question(image_window, "Rectangles placement",
+                                              "Do the coordinates of rectangle are "
+                                              "valid?")
     if message_box_answer == QMessageBox.Yes:
         placement_of_rectangles_is_not_correct = False
     else:
