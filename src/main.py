@@ -49,31 +49,30 @@ input_file_path = sys.argv[1]
 file_type = check_input_file_type(input_file_path)
 print(file_type)
 
-try:
-    app_image_window = QApplication(sys.argv)
-    image_window = ImageWindowWithRectangles(input_file_path)
-    image_window.show()
+app_image_window = QApplication(sys.argv)
+image_window = ImageWindowWithRectangles(input_file_path)
+image_window.show()
 
+table_rectangles = []
+placement_of_rectangles_is_not_correct = True
+
+while placement_of_rectangles_is_not_correct:
     for rectangle in file_type.value[1]:
         image_window.draw_rectangle(rectangle.top_left, rectangle.bottom_right)
 
-    rectangles = []
-    message_box_answer = QMessageBox.question(image_window, "Rectangles placement", "Do the coordinates of rectangle are valid?")
+    message_box_answer = QMessageBox.question(image_window, "Rectangles placement", "Do the coordinates of rectangle are "
+                                                                                    "valid?")
     if message_box_answer == QMessageBox.Yes:
-        rectangles.extend(file_type.value[1])
+        table_rectangles.extend(file_type.value[1])
+        placement_of_rectangles_is_not_correct = False
     else:
         form = FormChangeRectangleCoordinates(image_window, file_type.value[1])
         form.show()
 
         form_result = form.exec_()
         if form_result:
-            rectangles.extend(form.get_fields_values())
+            table_rectangles.extend(form.get_fields_values())
         else:
-            rectangles.extend(file_type.value[1])
+            table_rectangles.extend(file_type.value[1])
 
-
-    app_image_window.exec_()
-    # im = Image.open(input_file_path)
-    # im.show()
-except FileNotFoundError:
-    print("file not found for path: " + input_file_path)
+app_image_window.exec_()

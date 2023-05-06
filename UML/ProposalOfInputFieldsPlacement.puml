@@ -5,12 +5,13 @@ start
 :Display image;
 :Draw rectangles by coordinates;
 :Display question if the coordinates are correct;
-if (if the coordinates are correct) then (true)
-    stop
-else (false)
+
+
+while (if the coordinates are correct) is (False)
     :Ask user about new coordinates;
     :User provides new coordinates;
-endif
+    :Display image with new rectangles;
+endwhile (True)
 stop
 
 'Output:
