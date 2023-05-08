@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QRect, QPoint
 from PyQt5.QtGui import QPixmap, QPainter, QPen, QColor
-from PyQt5.QtWidgets import QWidget, QLabel, QMainWindow
+from PyQt5.QtWidgets import QWidget, QLabel, QMainWindow, QDesktopWidget
 
 
 class ImageWindowWithRectangles(QMainWindow):
@@ -14,6 +14,8 @@ class ImageWindowWithRectangles(QMainWindow):
         self.painter = QPainter()
         self.pen = QPen()
         self.initialize_image_to_draw()
+
+        self.center()
 
     def draw_rectangle(self, top_left, bottom_right):
         x1, y1 = top_left
@@ -40,3 +42,7 @@ class ImageWindowWithRectangles(QMainWindow):
         self.pen = QPen()
         self.pen.setColor(QColor("red"))
         self.painter.setPen(self.pen)
+
+    def center(self):
+        central_screen_point = QDesktopWidget().availableGeometry().center()
+        self.move(QPoint(0, 0))
