@@ -1,5 +1,7 @@
 import sys
+import os
 import re
+import easyocr
 import numpy as np
 from PIL import Image
 from enum import Enum
@@ -43,7 +45,7 @@ def check_input_file_type(input_file_path):
 
 
 print("Program started")
-print(sys.argv)
+print(f"current dir:{os.getcwd()}")
 print(sys.argv[1])
 
 input_file_path = sys.argv[1]
@@ -85,6 +87,9 @@ while placement_of_rectangles_is_not_correct:
         if form_result:
             table_rectangles = list(form.get_fields_values())
 
+app_image_window.closeAllWindows()
+
+
 input_image = Image.open(input_file_path)
 images_of_excel_table = []
 for table_rectangle in table_rectangles:
@@ -94,9 +99,20 @@ for table_rectangle in table_rectangles:
     image_of_excel_table = input_image.crop((x1, y1, x2, y2))
     images_of_excel_table.append(image_of_excel_table)
 
-
 # for image_of_excel_table in images_of_excel_table:
 #     image_of_excel_table.show()
 
+languages = ["en", "pl"]
+reader = easyocr.Reader(languages)
+table_data = []
+for image_of_excel_table in images_of_excel_table:
+    image_data = np.asarray(image_of_excel_table)
+    table_data.append(reader.readtext(image_data))
 
-app_image_window.exec_()
+for index, table in enumerate(table_data):
+    print(f"table {index}")
+    for result in table:
+        print(result)
+
+
+
