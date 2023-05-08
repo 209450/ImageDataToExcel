@@ -12,10 +12,10 @@ from gui.image_window_with_rectangles import ImageWindowWithRectangles
 
 
 class FileType(Enum):
-    RETINA = ["retina", [RectangleCoordinates(0, 0, 100, 100)]]
-    DISC = ["disc", [RectangleCoordinates(100, 100, 200, 200),
-                     RectangleCoordinates(300, 300, 400, 400)]]
-    ANTERIOR_RADIAL = ["anterior_radial", [RectangleCoordinates(500, 500, 600, 600)]]
+    RETINA = ["retina", [RectangleCoordinates(50, 860, 335, 968)]]
+    DISC = ["disc", [RectangleCoordinates(562, 203, 920, 497),
+                     RectangleCoordinates(562, 786, 920, 873)]]
+    ANTERIOR_RADIAL = ["anterior_radial", [RectangleCoordinates(47, 676, 308, 875)]]
     ANTERIOR_3D = ["anterior_3d"]
     NOT_FOUND = ["not found"]
 
@@ -94,8 +94,9 @@ for table_rectangle in table_rectangles:
     image_of_excel_table = input_image.crop((x1, y1, x2, y2))
     images_of_excel_table.append(image_of_excel_table)
 
-for image_of_excel_table in images_of_excel_table:
-    image_of_excel_table.show()
+
+# for image_of_excel_table in images_of_excel_table:
+#     image_of_excel_table.show()
 
 
 app_image_window.exec_()
