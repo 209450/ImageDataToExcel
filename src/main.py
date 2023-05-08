@@ -49,13 +49,18 @@ input_file_path = sys.argv[1]
 file_type = check_input_file_type(input_file_path)
 print(file_type)
 
+try:
+    table_rectangles = list(file_type.value[1])
+except IndexError:
+    print(f"{file_type} can not be processed")
+    print("Program ended")
+    sys.exit(1)
+
 app_image_window = QApplication(sys.argv)
 image_window = ImageWindowWithRectangles(input_file_path)
 image_window.show()
 
-table_rectangles = list(file_type.value[1])
 placement_of_rectangles_is_not_correct = True
-
 while placement_of_rectangles_is_not_correct:
 
     image_window.clear_drawings()
@@ -78,6 +83,5 @@ while placement_of_rectangles_is_not_correct:
         form_result = form.exec_()
         if form_result:
             table_rectangles = list(form.get_fields_values())
-
 
 app_image_window.exec_()
