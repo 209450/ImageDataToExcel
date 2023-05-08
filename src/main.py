@@ -1,5 +1,6 @@
 import sys
 import re
+import numpy as np
 from PIL import Image
 from enum import Enum
 
@@ -83,5 +84,18 @@ while placement_of_rectangles_is_not_correct:
         form_result = form.exec_()
         if form_result:
             table_rectangles = list(form.get_fields_values())
+
+input_image = Image.open(input_file_path)
+images_of_excel_table = []
+for table_rectangle in table_rectangles:
+    x1, y1 = table_rectangle.top_left
+    x2, y2 = table_rectangle.bottom_right
+
+    image_of_excel_table = input_image.crop((x1, y1, x2, y2))
+    images_of_excel_table.append(image_of_excel_table)
+
+for image_of_excel_table in images_of_excel_table:
+    image_of_excel_table.show()
+
 
 app_image_window.exec_()
