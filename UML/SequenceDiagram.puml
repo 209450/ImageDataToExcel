@@ -11,7 +11,9 @@ Computer -> User: Proposal of input fields placement
 User -> Computer: Provides return information
 Computer -> Computer: Setup setting according to the information return from User
 Computer -> Computer: Perform Operations on file
-Computer -> Computer: Data Extraction and prepation output file
+Computer -> User: Ask if scanned data is correct
+User -> Computer: Provides return information
+Computer -> Computer: Data Extraction and preparation output file
 Computer -> Computer: Setup output file name to provided with different extension
 Computer -> User: Proposal of change default output file name
 User -> Computer: Provides return information

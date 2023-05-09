@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Display scanned data and table image;
+:Display question if scanned data is correct;
+
+while (output data is correct) is (False)
+    :Go back to step ProposalOfInputFieldsPlacement;
+endwhile (True)
+stop
+
+@enduml
