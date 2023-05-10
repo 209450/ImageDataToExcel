@@ -14,10 +14,14 @@ from gui.image_window_with_rectangles import ImageWindowWithRectangles
 
 
 class FileType(Enum):
-    RETINA = ["retina", [RectangleCoordinates(50, 860, 335, 968)]]
-    DISC = ["disc", [RectangleCoordinates(562, 203, 920, 497),
-                     RectangleCoordinates(562, 786, 920, 873)]]
-    ANTERIOR_RADIAL = ["anterior_radial", [RectangleCoordinates(47, 676, 308, 875)]]
+    RETINA = ["retina", [RectangleCoordinates(261, 883, 335, 968)]]
+    DISC_3D_DWOJE = ["disc_3d_dwoje", [RectangleCoordinates(725, 226, 921, 496),
+                                       RectangleCoordinates(778, 811, 920, 873)]]
+    DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(801, 232, 986, 871)]]
+    DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(801, 232, 986, 871)]]
+    ANTERIOR_RADIAL_L = ["anterior_radial_l", [RectangleCoordinates(255, 699, 308, 875)]]
+    ANTERIOR_RADIAL_R = ["anterior_radial_r", [RectangleCoordinates(255, 699, 308, 875)]]
+    DISC_ANGIO = ["disc_angio"]
     ANTERIOR_3D = ["anterior_3d"]
     NOT_FOUND = ["not found"]
 
@@ -89,7 +93,6 @@ while placement_of_rectangles_is_not_correct:
 
 app_image_window.closeAllWindows()
 
-
 input_image = Image.open(input_file_path)
 images_of_excel_table = []
 for table_rectangle in table_rectangles:
@@ -113,6 +116,3 @@ for index, table in enumerate(table_data):
     print(f"table {index}")
     for result in table:
         print(result)
-
-
-
