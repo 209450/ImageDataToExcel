@@ -17,7 +17,7 @@ class ScannedDataCheckDialog(QDialog):
         self.init_label_image(input_image_path, rectangle_coordinates)
         self.grid.addWidget(self.label_image, 0, 0)
 
-        self.table_data = table_data
+        self.line_edits = {}
         self.table_data_container = QWidget()
         self.init_table_data(table_data)
         self.grid.addWidget(self.table_data_container, 0, 1)
@@ -36,11 +36,21 @@ class ScannedDataCheckDialog(QDialog):
     def reject_data(self):
         self.reject()
 
+    def get_fields_values(self):
+        output_dict = {}
+        for label_text, horizontal_line_edit in self.line_edits.items():
+            output_dict[label_text] = horizontal_line_edit.line_edit.text()
+
+        return output_dict
+
     def init_table_data(self, table_data):
         table_data_container_layout = QVBoxLayout()
-        for label_text, value in self.table_data.items():
-            new_line = HorizontalQLineEditWithLabel(str(value), label_text)
+        for key, value in table_data.items():
+            new_line = HorizontalQLineEditWithLabel(str(value), key)
             table_data_container_layout.addWidget(new_line)
+
+            self.line_edits[key] = new_line
+
         self.table_data_container.setLayout(table_data_container_layout)
 
     def init_label_image(self, input_image_path, rectangle_coordinates):

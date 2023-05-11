@@ -60,7 +60,7 @@ if __name__ == '__main__':
         print("Program ended")
         sys.exit(1)
 
-    rows_labels = {
+    output_data = {
         "Min. grubość w dołeczku [μm]": "",
         "Centralny sektor [μm]": "",
         "Średnia grubość [μm]": "",
@@ -76,16 +76,18 @@ if __name__ == '__main__':
 
         read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
         # read_text[0] - 1 table
-        for key, text in zip(rows_labels.keys(), read_text[0]):
-            rows_labels[key] = text
+        for key, text in zip(output_data.keys(), read_text[0]):
+            output_data[key] = text
 
         for rectangle in table_rectangles:
-            window = ScannedDataCheckDialog(input_file_path, rectangle, rows_labels)
-            window.show()
-            window.exec_()
+            dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_data)
+            dialog.show()
 
+            dialog_result = dialog.exec_()
+            if dialog_result:
+                output_data = dialog.get_fields_values()
+                output_data_is_not_correct = False
+            else:
+                output_data_is_not_correct = True
 
-# for index, table in enumerate(read_text):
-#     print(f"table {index}")
-#     for result in table:
-#         print(result)
+    print(output_data)
