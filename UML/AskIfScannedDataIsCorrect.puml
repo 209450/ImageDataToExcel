@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+while (output data is correct) is (False)
+    :Display input table and box with scanned data which user can change;
+    :Ask user if output data is correct;
+    if (output data is correct) then (True)
+        break
+    endif
+    :Go back to step ProposalOfInputFieldsPlacement;
+
+endwhile (True)
+stop
+
+@enduml
