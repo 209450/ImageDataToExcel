@@ -44,7 +44,7 @@ class FormChangeRectangleCoordinates(QDialog):
         for rectangle_index, rectangle in enumerate(self.return_rectangles):
             new_values = []
             for coordinates_label in coordinates_labels:
-                text_value = line_edits[(rectangle_index,coordinates_label)].text()
+                text_value = line_edits[(rectangle_index, coordinates_label)].text()
                 new_value = int(text_value)
                 new_values.append(new_value)
 

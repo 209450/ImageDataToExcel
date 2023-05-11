@@ -6,10 +6,11 @@ import numpy as np
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from data_structures.file_type import check_input_file_type
-from gui.form_change_rectangle_coordinates import FormChangeRectangleCoordinates
-from gui.image_window_with_rectangles import ImageWindowWithRectangles
-from ocr.crop_image import crop_image_by_rectangle_coordinates
-from ocr.read_text_from_image import read_text_from_image
+from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinates
+from gui.image_with_rectangles_window import ImageWindowWithRectangles
+from gui.scanned_data_check_dialog import ScannedDataCheckDialog
+from ocr.crop_image import crop_image_by_rectangle_coordinates_with
+from ocr.read_text_from_image import read_text_from_image_rectangles
 
 
 def open_change_rectangle_window(input_table_rectangles):
@@ -41,7 +42,7 @@ def open_change_rectangle_window(input_table_rectangles):
                 input_table_rectangles = list(form.get_fields_values())
 
     image_window.deleteLater()
-
+    return input_table_rectangles
 
 if __name__ == '__main__':
     print("Program started")
@@ -59,16 +60,29 @@ if __name__ == '__main__':
         print("Program ended")
         sys.exit(1)
 
+    rows_labels = {
+        "Min. grubość w dołeczku [μm]": "",
+        "Centralny sektor [μm]": "",
+        "Średnia grubość [μm]": "",
+        "Objętość [mm3]": ""
+    }
+
+    output_data_is_not_correct = True
     app_image_window = QApplication(sys.argv)
-    open_change_rectangle_window(table_rectangles)
-    app_image_window.closeAllWindows()
+    while output_data_is_not_correct:
 
-    images_of_excel_table = crop_image_by_rectangle_coordinates(input_file_path, table_rectangles)
+        table_rectangles = open_change_rectangle_window(table_rectangles)
+        app_image_window.closeAllWindows()
 
-    languages = ["en", "pl"]
-    read_text = read_text_from_image(languages, images_of_excel_table)
+        read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
 
-    for index, table in enumerate(read_text):
-        print(f"table {index}")
-        for result in table:
-            print(result)
+        for rectangle in table_rectangles:
+            window = ScannedDataCheckDialog(input_file_path, rectangle, rows_labels)
+            window.show()
+            window.exec_()
+
+
+# for index, table in enumerate(read_text):
+#     print(f"table {index}")
+#     for result in table:
+#         print(result)

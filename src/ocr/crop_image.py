@@ -1,7 +1,7 @@
 from PIL import Image
 
 
-def crop_image_by_rectangle_coordinates(input_file_path, table_rectangles):
+def crop_image_by_rectangle_coordinates_with(input_file_path, table_rectangles):
     input_image = Image.open(input_file_path)
     cropped_images_of_tables = []
     for table_rectangle in table_rectangles:
@@ -15,3 +15,5 @@ def crop_image_by_rectangle_coordinates(input_file_path, table_rectangles):
     #     image_of_excel_table.show()
 
     return cropped_images_of_tables
+
+
