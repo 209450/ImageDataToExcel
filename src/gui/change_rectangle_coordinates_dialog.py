@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QDialog, QPushButton, QVBoxLayout, QLineEdit, QWidget, QHBoxLayout, QLabel
 
 from data_structures.rectangle_coordinates import RectangleCoordinates
+from gui.horizontal_qline_edit_with_label import HorizontalQLineEditWithLabel
 
 
 class FormChangeRectangleCoordinates(QDialog):
@@ -56,15 +57,3 @@ class FormChangeRectangleCoordinates(QDialog):
         return self.return_rectangles
 
 
-class HorizontalQLineEditWithLabel(QWidget):
-
-    def __init__(self, line_edit_init_value, label_text):
-        super(HorizontalQLineEditWithLabel, self).__init__()
-
-        self.label = QLabel(label_text)
-        self.line_edit = QLineEdit(line_edit_init_value)
-
-        horizontal_layout = QHBoxLayout()
-        horizontal_layout.addWidget(self.label)
-        horizontal_layout.addWidget(self.line_edit)
-        self.setLayout(horizontal_layout)

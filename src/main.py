@@ -75,6 +75,9 @@ if __name__ == '__main__':
         app_image_window.closeAllWindows()
 
         read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
+        # read_text[0] - 1 table
+        for key, text in zip(rows_labels.keys(), read_text[0]):
+            rows_labels[key] = text
 
         for rectangle in table_rectangles:
             window = ScannedDataCheckDialog(input_file_path, rectangle, rows_labels)
