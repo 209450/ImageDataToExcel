@@ -1,0 +1,5 @@
+PyQt5~=5.15.9
+Pillow~=9.2.0
+easyocr~=1.6.2
+numpy~=1.23.5
+pandas~=2.0.1
