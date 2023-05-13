@@ -6,6 +6,7 @@ from gui.horizontal_qline_edit_with_label import HorizontalQLineEditWithLabel
 
 
 class ScannedDataCheckDialog(QDialog):
+    MAX_ROWS_TABLE_DATA_CONTAINER = 10
 
     def __init__(self, input_image_path, rectangle_coordinates, table_data):
         super().__init__()
@@ -44,10 +45,19 @@ class ScannedDataCheckDialog(QDialog):
         return output_dict
 
     def init_table_data(self, table_data):
-        table_data_container_layout = QVBoxLayout()
+        table_data_container_layout = QGridLayout()
+
+        row_counter = 0
+        col_counter = 0
         for key, value in table_data.items():
             new_line = HorizontalQLineEditWithLabel(str(value), key)
-            table_data_container_layout.addWidget(new_line)
+            table_data_container_layout.addWidget(new_line, row_counter, col_counter)
+
+            row_counter = row_counter + 1
+
+            if row_counter >= self.MAX_ROWS_TABLE_DATA_CONTAINER:
+                row_counter = 0
+                col_counter = col_counter + 1
 
             self.line_edits[key] = new_line
 
