@@ -1,3 +1,4 @@
+import json
 import sys
 import os
 import easyocr
@@ -44,6 +45,7 @@ def open_change_rectangle_window(input_table_rectangles):
     image_window.deleteLater()
     return input_table_rectangles
 
+
 if __name__ == '__main__':
     print("Program started")
     print(f"current dir: {os.getcwd()}")
@@ -60,12 +62,10 @@ if __name__ == '__main__':
         print("Program ended")
         sys.exit(1)
 
-    output_data = {
-        "Min. grubość w dołeczku [μm]": "",
-        "Centralny sektor [μm]": "",
-        "Średnia grubość [μm]": "",
-        "Objętość [mm3]": ""
-    }
+    config_path = "config.json"
+    with open(config_path, encoding="utf-8") as file:
+        loaded_json = json.load(file)
+        output_data = loaded_json[file_type.value[0]].copy()
 
     output_data_is_not_correct = True
     app_image_window = QApplication(sys.argv)
@@ -74,10 +74,10 @@ if __name__ == '__main__':
         table_rectangles = open_change_rectangle_window(table_rectangles)
         app_image_window.closeAllWindows()
 
-        read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
-        # read_text[0] - 1 table
-        for key, text in zip(output_data.keys(), read_text[0]):
-            output_data[key] = text
+        tables_read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
+        for table_name, table_data in zip(output_data.keys(), tables_read_text):
+            for label, text in zip(output_data[table_name].keys(), table_data):
+                output_data[table_name][label] = text
 
         for rectangle in table_rectangles:
             dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_data)
