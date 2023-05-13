@@ -79,15 +79,21 @@ if __name__ == '__main__':
             for label, text in zip(output_data[table_name].keys(), table_data):
                 output_data[table_name][label] = text
 
-        for rectangle in table_rectangles:
-            dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_data)
-            dialog.show()
+        for table_name in output_data.keys():
+            for rectangle in table_rectangles:
+                dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_data[table_name])
+                dialog.show()
 
-            dialog_result = dialog.exec_()
-            if dialog_result:
-                output_data = dialog.get_fields_values()
-                output_data_is_not_correct = False
-            else:
-                output_data_is_not_correct = True
+                dialog_result = dialog.exec_()
+                if dialog_result:
+                    output_data = dialog.get_fields_values()
+                    output_data_is_not_correct = False
+                else:
+                    output_data_is_not_correct = True
 
-    print(output_data)
+    for key, value in output_data.items():
+        print(f"{key}:{value}")
+
+    # for table_name in output_data.keys():
+    #     for key, value in output_data[table_name].values():
+    #         print(f"{key}:{value}")
