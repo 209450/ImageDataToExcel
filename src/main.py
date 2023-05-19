@@ -3,6 +3,7 @@ import sys
 import os
 import easyocr
 import numpy as np
+from PIL import Image
 
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
@@ -10,12 +11,11 @@ from data_structures.file_type import check_input_file_type
 from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinates
 from gui.image_with_rectangles_window import ImageWindowWithRectangles
 from gui.scanned_data_check_dialog import ScannedDataCheckDialog
-from ocr.crop_image import crop_image_by_rectangle_coordinates_with
 from ocr.read_text_from_image import read_text_from_image_rectangles
 
 
-def open_change_rectangle_window(input_table_rectangles):
-    image_window = ImageWindowWithRectangles(input_file_path)
+def open_change_rectangle_window(image_path, input_table_rectangles):
+    image_window = ImageWindowWithRectangles(image_path)
     image_window.show()
 
     placement_of_rectangles_is_not_correct = True
@@ -67,17 +67,22 @@ if __name__ == '__main__':
         loaded_json = json.load(file)
         output_data = loaded_json[file_type.value[0]].copy()
 
+    input_image = Image.open(input_file_path)
+
     output_data_is_not_correct = True
     app_image_window = QApplication(sys.argv)
     while output_data_is_not_correct:
 
-        table_rectangles = open_change_rectangle_window(table_rectangles)
+        table_rectangles = open_change_rectangle_window(input_file_path, table_rectangles)
         app_image_window.closeAllWindows()
 
-        tables_read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
-        for table_name, table_data in zip(output_data.keys(), tables_read_text):
-            for label, text in zip(output_data[table_name].keys(), table_data):
-                output_data[table_name][label] = text
+        output = []
+        for rectangle in table_rectangles:
+            output.append(read_text_from_image_rectangles(file_type, input_image, rectangle))
+
+        # for table_name, table_data in zip(output_data.keys(), tables_read_text):
+        #     for label, text in zip(output_data[table_name].keys(), table_data):
+        #         output_data[table_name][label] = text
 
         for table_name in output_data.keys():
             for rectangle in table_rectangles:
