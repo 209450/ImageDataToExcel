@@ -6,6 +6,24 @@ from data_structures.rectangle_coordinates import RectangleCoordinates
 
 class Tables:
     short_box = (46, 23)
+    RETINA = {
+        "Centralny sektor [μm]": RectangleCoordinates.from_box(11, 0, short_box),
+        "Min. grubość w dołeczku [μm]": RectangleCoordinates.from_box(11, 18, short_box),
+        "Średnia grubość [μm]": RectangleCoordinates.from_box(11, 39, short_box),
+        "Objętość [mm3]": RectangleCoordinates.from_box(11, 58, short_box)
+    }
+
+    ANTERIOR_RADIAL = {
+        "Centralny sektor [μm]": RectangleCoordinates.from_box(0, 0, short_box),
+        "Minimum [μm]": RectangleCoordinates.from_box(0, 18, short_box),
+        "Mediana [μm}": RectangleCoordinates.from_box(0, 37, short_box),
+        "Min - Mediana [μm]": RectangleCoordinates.from_box(0, 58, short_box),
+        "Sn - IT [μm]": RectangleCoordinates.from_box(0, 94, short_box),
+        "S - I [μm]": RectangleCoordinates.from_box(0, 113, short_box),
+        "ST - IN [μm]": RectangleCoordinates.from_box(0, 133, short_box),
+        "T - N [μm]": RectangleCoordinates.from_box(0, 150, short_box)
+    }
+    
     DISC_3D = {
         "Tarcza [mm2]": RectangleCoordinates.from_box(8, 0, short_box),
         "Zagłębienie [mm2]": RectangleCoordinates.from_box(8, 21, short_box),
@@ -46,13 +64,13 @@ class Tables:
 
 
 class FileType(Enum):
-    RETINA = ["retina", [RectangleCoordinates(261, 883, 335, 968)]]
+    RETINA = ["retina", [RectangleCoordinates(263, 883, 333, 964)], Tables.RETINA]
     DISC_3D_DWOJE = ["disc_3d_dwoje", [RectangleCoordinates(725, 226, 921, 496),
                                        RectangleCoordinates(778, 811, 920, 873)]]
     DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
     DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
-    ANTERIOR_RADIAL_L = ["anterior_radial_l", [RectangleCoordinates(255, 699, 308, 875)]]
-    ANTERIOR_RADIAL_R = ["anterior_radial_r", [RectangleCoordinates(255, 699, 308, 875)]]
+    ANTERIOR_RADIAL_L = ["anterior_radial_l", [RectangleCoordinates(256, 698, 304, 871)], Tables.ANTERIOR_RADIAL]
+    ANTERIOR_RADIAL_R = ["anterior_radial_r", [RectangleCoordinates(256, 698, 304, 871)], Tables.ANTERIOR_RADIAL]
     DISC_ANGIO = ["disc_angio"]
     ANTERIOR_3D = ["anterior_3d"]
     NOT_FOUND = ["not found"]
