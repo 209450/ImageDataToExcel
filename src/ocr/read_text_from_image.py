@@ -1,18 +1,29 @@
+import cv2
 import easyocr
 import numpy as np
+from PIL.Image import Image
+from pytesseract import pytesseract
 
-from ocr.crop_image import crop_image_by_rectangle_coordinates_with
+from ocr.crop_image import crop_image_by_rectangle
 
 
-def read_text_from_image_rectangles(input_file_path, table_rectangles, _detail=0):
-    images_of_excel_table = crop_image_by_rectangle_coordinates_with(input_file_path, table_rectangles)
+def read_text_from_image_rectangles(file_type, input_image, table_rectangles):
+    image_of_table = crop_image_by_rectangle(input_image, table_rectangles)
+    # convert image to greyscale
+    image_of_table = image_of_table.convert('L')
 
-    languages = ["en", "pl"]
+    languages = ["en"]
     reader = easyocr.Reader(languages)
 
-    table_data = []
-    for image in images_of_excel_table:
-        image_data = np.asarray(image)
-        table_data.append(reader.readtext(image_data, detail=_detail))
+    read_data = {}
+    for col_label, coordinates in file_type.value[2].items():
+        cell_image = crop_image_by_rectangle(image_of_table, coordinates)
+        image_data = np.asarray(cell_image)
+        result = reader.readtext(image_data, detail=0)
 
-    return table_data
+        if len(result) > 0:
+            read_data[col_label] = result[0]
+        else:
+            read_data[col_label] = ""
+
+    return read_data

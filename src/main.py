@@ -69,6 +69,7 @@ if __name__ == '__main__':
 
     input_image = Image.open(input_file_path)
 
+    output_tables = []
     output_data_is_not_correct = True
     app_image_window = QApplication(sys.argv)
     while output_data_is_not_correct:
@@ -76,28 +77,32 @@ if __name__ == '__main__':
         table_rectangles = open_change_rectangle_window(input_file_path, table_rectangles)
         app_image_window.closeAllWindows()
 
-        output = []
+        output_tables = []
         for rectangle in table_rectangles:
-            output.append(read_text_from_image_rectangles(file_type, input_image, rectangle))
+            output_tables.append(read_text_from_image_rectangles(file_type, input_image, rectangle))
 
         # for table_name, table_data in zip(output_data.keys(), tables_read_text):
         #     for label, text in zip(output_data[table_name].keys(), table_data):
         #         output_data[table_name][label] = text
 
-        for table_name in output_data.keys():
+        for output_table in output_tables:
             for rectangle in table_rectangles:
-                dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_data[table_name])
+                dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_table)
                 dialog.show()
 
                 dialog_result = dialog.exec_()
                 if dialog_result:
-                    output_data = dialog.get_fields_values()
+                    output_table = dialog.get_fields_values()
                     output_data_is_not_correct = False
                 else:
                     output_data_is_not_correct = True
 
-    for key, value in output_data.items():
-        print(f"{key}:{value}")
+    for table in output_tables:
+        for key, value in table.items():
+            print(f"{key}:{value}")
+
+    # for key, value in output_data.items():
+    #     print(f"{key}:{value}")
 
     # for table_name in output_data.keys():
     #     for key, value in output_data[table_name].values():
