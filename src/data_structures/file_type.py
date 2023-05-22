@@ -7,10 +7,13 @@ from data_structures.rectangle_coordinates import RectangleCoordinates
 class Tables:
     short_box = (46, 23)
     RETINA = {
-        "Centralny sektor [μm]": RectangleCoordinates.from_box(11, 0, short_box),
-        "Min. grubość w dołeczku [μm]": RectangleCoordinates.from_box(11, 18, short_box),
-        "Średnia grubość [μm]": RectangleCoordinates.from_box(11, 39, short_box),
-        "Objętość [mm3]": RectangleCoordinates.from_box(11, 58, short_box)
+        "Pomiary ILM - OS/RPE": {
+            "Centralny sektor [μm]": RectangleCoordinates.from_box(11, 0, short_box),
+            "Min. grubość w dołeczku [μm]": RectangleCoordinates.from_box(11, 18, short_box),
+            "Średnia grubość [μm]": RectangleCoordinates.from_box(11, 39, short_box),
+            "Objętość [mm3]": RectangleCoordinates.from_box(11, 58, short_box)
+        }
+
     }
 
     ANTERIOR_RADIAL = {
@@ -23,7 +26,7 @@ class Tables:
         "ST - IN [μm]": RectangleCoordinates.from_box(0, 133, short_box),
         "T - N [μm]": RectangleCoordinates.from_box(0, 150, short_box)
     }
-    
+
     DISC_3D = {
         "Tarcza [mm2]": RectangleCoordinates.from_box(8, 0, short_box),
         "Zagłębienie [mm2]": RectangleCoordinates.from_box(8, 21, short_box),
@@ -74,7 +77,6 @@ class FileType(Enum):
     DISC_ANGIO = ["disc_angio"]
     ANTERIOR_3D = ["anterior_3d"]
     NOT_FOUND = ["not found"]
-
 
 
 def check_input_file_type(input_file_path):

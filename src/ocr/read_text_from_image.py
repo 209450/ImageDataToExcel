@@ -7,7 +7,7 @@ from pytesseract import pytesseract
 from ocr.crop_image import crop_image_by_rectangle
 
 
-def read_text_from_image_rectangles(file_type, input_image, table_rectangles):
+def read_text_from_image_rectangles(table_fields, input_image, table_rectangles):
     image_of_table = crop_image_by_rectangle(input_image, table_rectangles)
     # convert image to greyscale
     image_of_table = image_of_table.convert('L')
@@ -16,7 +16,7 @@ def read_text_from_image_rectangles(file_type, input_image, table_rectangles):
     reader = easyocr.Reader(languages)
 
     read_data = {}
-    for col_label, coordinates in file_type.value[2].items():
+    for col_label, coordinates in table_fields.items():
         cell_image = crop_image_by_rectangle(image_of_table, coordinates)
         image_data = np.asarray(cell_image)
         result = reader.readtext(image_data, detail=0)
