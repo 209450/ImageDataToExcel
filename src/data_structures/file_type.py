@@ -66,8 +66,13 @@ class Tables:
             "S - I [μm]": RectangleCoordinates.from_box(0, 113, short_box),
             "ST - IN [μm]": RectangleCoordinates.from_box(0, 133, short_box),
             "T - N [μm]": RectangleCoordinates.from_box(0, 150, short_box)
+        },
+        "Nabłonek rogówki": {
+            "Nabłonek rogówki [μm]": RectangleCoordinates.from_box(133, 170, short_box)
+        },
+        "Korekcja IOP": {
+            "Korekcja IOP [mmHg]": RectangleCoordinates.from_box(232, 2, short_box)
         }
-
     }
 
 
@@ -77,8 +82,14 @@ class FileType(Enum):
                                        RectangleCoordinates(778, 811, 920, 873)]]
     DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
     DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
-    ANTERIOR_RADIAL_L = ["anterior_radial_l", [RectangleCoordinates(256, 698, 304, 871)], Tables.ANTERIOR_RADIAL]
-    ANTERIOR_RADIAL_R = ["anterior_radial_r", [RectangleCoordinates(256, 698, 304, 871)], Tables.ANTERIOR_RADIAL]
+    ANTERIOR_RADIAL_L = ["anterior_radial_l",
+                         [RectangleCoordinates(256, 698, 304, 871), RectangleCoordinates(701, 638, 1067, 973),
+                          RectangleCoordinates(1069, 197, 1432, 347)],
+                         Tables.ANTERIOR_RADIAL]
+    ANTERIOR_RADIAL_R = ["anterior_radial_r",
+                         [RectangleCoordinates(256, 698, 304, 871), RectangleCoordinates(701, 638, 1067, 973),
+                          RectangleCoordinates(1069, 197, 1432, 347)],
+                         Tables.ANTERIOR_RADIAL]
     DISC_ANGIO = ["disc_angio"]
     ANTERIOR_3D = ["anterior_3d"]
     NOT_FOUND = ["not found"]

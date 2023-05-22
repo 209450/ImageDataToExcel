@@ -88,18 +88,22 @@ if __name__ == '__main__':
         #     for label, text in zip(output_data[table_name].keys(), table_data):
         #         output_data[table_name][label] = text
 
-        for table_name, output_table in output_tables.items():
-            for rectangle in table_rectangles:
-                dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_table)
-                dialog.show()
+        dialog_results = []
+        for table_name, rectangle in zip(output_tables.keys(), table_rectangles):
+            dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_tables[table_name])
+            dialog.show()
 
-                dialog_result = dialog.exec_()
-                if dialog_result:
-                    # output_table = dialog.get_fields_values()
-                    output_tables[table_name] = dialog.get_fields_values()
-                    output_data_is_not_correct = False
-                else:
-                    output_data_is_not_correct = True
+            dialog_result = dialog.exec_()
+            dialog_results.append(dialog_result)
+            if dialog_result:
+                output_tables[table_name] = dialog.get_fields_values()
+
+        if 0 in dialog_results:
+            output_data_is_not_correct = True
+        else:
+            output_data_is_not_correct = False
+
+
 
     # for table in output_tables:
     #     for key, value in table.items():
