@@ -15,54 +15,59 @@ class Tables:
         }
 
     }
+    DISC_3D = {
+        "Powierzchnia": {
+            "Tarcza [mm2]": RectangleCoordinates.from_box(8, 0, short_box),
+            "Zagłębienie [mm2]": RectangleCoordinates.from_box(8, 21, short_box),
+            "Rąbek [mm2]": RectangleCoordinates.from_box(8, 42, short_box),
+            "Cup/Disc": RectangleCoordinates.from_box(8, 63, short_box),
+            "Zagłębienie [mm3]": RectangleCoordinates.from_box(8, 105, short_box),
+            "Rąbek [mm3]": RectangleCoordinates.from_box(8, 124, short_box),
+            "Śr. głęb. zagłębienia [mm]": RectangleCoordinates.from_box(8, 165, short_box),
+            "Maks. głęb. zagłębienia [mm]": RectangleCoordinates.from_box(8, 206, short_box),
+            "Pozioma średnica tarczy [mm]": RectangleCoordinates.from_box(8, 264, short_box),
+            "Pionowa średnia tarczy [mm]": RectangleCoordinates.from_box(8, 304, short_box),
+            "Średnica tarczy [mm]": RectangleCoordinates.from_box(8, 346, short_box),
+            "Pozioma średnica zagłębienia [mm]": RectangleCoordinates.from_box(8, 368, short_box),
+            "Pionowa średnica zagłębienia [mm]": RectangleCoordinates.from_box(8, 407, short_box),
+            "średnica zagłębienia [mm]": RectangleCoordinates.from_box(8, 447, short_box),
+            "C/D poziomo": RectangleCoordinates.from_box(8, 489, short_box),
+            "C/D pionowo": RectangleCoordinates.from_box(8, 510, short_box),
+            "Tarcza V/H": RectangleCoordinates.from_box(8, 530, short_box),
+            "Zagłębienie V/H": RectangleCoordinates.from_box(8, 551, short_box),
+            "R/D minimum": RectangleCoordinates.from_box(8, 573, short_box),
+            "Brak rąbka []": RectangleCoordinates.from_box(8, 593, short_box),
+            "DDLS": RectangleCoordinates.from_box(0, 613, short_box),
+            "Zagłębienie [mm2] Norma min": RectangleCoordinates.from_box(76, 20, short_box),
+            "Zagłębienie [mm2] Norma max": RectangleCoordinates.from_box(130, 20, short_box),
+            "Rąbek [mm2] Norma min": RectangleCoordinates.from_box(75, 42, short_box),
+            "Rąbek [mm2] Norma max": RectangleCoordinates.from_box(130, 42, short_box),
+            "Cup/Disc Norma min": RectangleCoordinates.from_box(79, 63, short_box),
+            "Cup/Disc Norma max": RectangleCoordinates.from_box(132, 62, short_box),
+            "Zagłębienie [mm3] Norma min": RectangleCoordinates.from_box(80, 103, short_box),
+            "Zagłębienie [mm3] Norma max": RectangleCoordinates.from_box(130, 101, short_box),
+            "Rąbek [mm3] Norma min": RectangleCoordinates.from_box(74, 125, short_box),
+            "Rąbek [mm3] Norma max": RectangleCoordinates.from_box(129, 125, short_box),
+            "Śr. głęb. zagłębienia [mm] Norma min": RectangleCoordinates.from_box(80, 166, short_box),
+            "Śr. głęb. zagłębienia [mm] Norma max": RectangleCoordinates.from_box(131, 166, short_box),
+            "Maks. głęb. zagłębienia [mm] Norma min": RectangleCoordinates.from_box(77, 205, short_box),
+            "Maks. głęb. zagłębienia [mm] Norma max": RectangleCoordinates.from_box(131, 205, short_box),
+        }
 
-    ANTERIOR_RADIAL = {
-        "Centralny sektor [μm]": RectangleCoordinates.from_box(0, 0, short_box),
-        "Minimum [μm]": RectangleCoordinates.from_box(0, 18, short_box),
-        "Mediana [μm}": RectangleCoordinates.from_box(0, 37, short_box),
-        "Min - Mediana [μm]": RectangleCoordinates.from_box(0, 58, short_box),
-        "Sn - IT [μm]": RectangleCoordinates.from_box(0, 94, short_box),
-        "S - I [μm]": RectangleCoordinates.from_box(0, 113, short_box),
-        "ST - IN [μm]": RectangleCoordinates.from_box(0, 133, short_box),
-        "T - N [μm]": RectangleCoordinates.from_box(0, 150, short_box)
     }
 
-    DISC_3D = {
-        "Tarcza [mm2]": RectangleCoordinates.from_box(8, 0, short_box),
-        "Zagłębienie [mm2]": RectangleCoordinates.from_box(8, 21, short_box),
-        "Rąbek [mm2]": RectangleCoordinates.from_box(8, 42, short_box),
-        "Cup/Disc": RectangleCoordinates.from_box(8, 63, short_box),
-        "Zagłębienie [mm3]": RectangleCoordinates.from_box(8, 105, short_box),
-        "Rąbek [mm3]": RectangleCoordinates.from_box(8, 124, short_box),
-        "Śr. głęb. zagłębienia [mm]": RectangleCoordinates.from_box(8, 165, short_box),
-        "Maks. głęb. zagłębienia [mm]": RectangleCoordinates.from_box(8, 206, short_box),
-        "Pozioma średnica tarczy [mm]": RectangleCoordinates.from_box(8, 264, short_box),
-        "Pionowa średnia tarczy [mm]": RectangleCoordinates.from_box(8, 304, short_box),
-        "Średnica tarczy [mm]": RectangleCoordinates.from_box(8, 346, short_box),
-        "Pozioma średnica zagłębienia [mm]": RectangleCoordinates.from_box(8, 368, short_box),
-        "Pionowa średnica zagłębienia [mm]": RectangleCoordinates.from_box(8, 407, short_box),
-        "średnica zagłębienia [mm]": RectangleCoordinates.from_box(8, 447, short_box),
-        "C/D poziomo": RectangleCoordinates.from_box(8, 489, short_box),
-        "C/D pionowo": RectangleCoordinates.from_box(8, 510, short_box),
-        "Tarcza V/H": RectangleCoordinates.from_box(8, 530, short_box),
-        "Zagłębienie V/H": RectangleCoordinates.from_box(8, 551, short_box),
-        "R/D minimum": RectangleCoordinates.from_box(8, 573, short_box),
-        "Brak rąbka []": RectangleCoordinates.from_box(8, 593, short_box),
-        "DDLS": RectangleCoordinates.from_box(0, 613, short_box),
-        "Zagłębienie [mm2] Norma min": RectangleCoordinates.from_box(76, 20, short_box),
-        "Zagłębienie [mm2] Norma max": RectangleCoordinates.from_box(130, 20, short_box),
-        "Rąbek [mm2] Norma min": RectangleCoordinates.from_box(75, 42, short_box),
-        "Rąbek [mm2] Norma max": RectangleCoordinates.from_box(130, 42, short_box),
-        "Cup/Disc Norma min": RectangleCoordinates.from_box(79, 63, short_box),
-        "Cup/Disc Norma max": RectangleCoordinates.from_box(132, 62, short_box),
-        "Zagłębienie [mm3] Norma min": RectangleCoordinates.from_box(80, 103, short_box),
-        "Zagłębienie [mm3] Norma max": RectangleCoordinates.from_box(130, 101, short_box),
-        "Rąbek [mm3] Norma min": RectangleCoordinates.from_box(74, 125, short_box),
-        "Rąbek [mm3] Norma max": RectangleCoordinates.from_box(129, 125, short_box),
-        "Śr. głęb. zagłębienia [mm] Norma min": RectangleCoordinates.from_box(80, 166, short_box),
-        "Śr. głęb. zagłębienia [mm] Norma max": RectangleCoordinates.from_box(131, 166, short_box),
-        "Maks. głęb. zagłębienia [mm] Norma min": RectangleCoordinates.from_box(77, 205, short_box),
-        "Maks. głęb. zagłębienia [mm] Norma max": RectangleCoordinates.from_box(131, 205, short_box),
+    ANTERIOR_RADIAL = {
+        "Tabela pachymetryczna": {
+            "Centralny sektor [μm]": RectangleCoordinates.from_box(0, 0, short_box),
+            "Minimum [μm]": RectangleCoordinates.from_box(0, 18, short_box),
+            "Mediana [μm}": RectangleCoordinates.from_box(0, 37, short_box),
+            "Min - Mediana [μm]": RectangleCoordinates.from_box(0, 58, short_box),
+            "Sn - IT [μm]": RectangleCoordinates.from_box(0, 94, short_box),
+            "S - I [μm]": RectangleCoordinates.from_box(0, 113, short_box),
+            "ST - IN [μm]": RectangleCoordinates.from_box(0, 133, short_box),
+            "T - N [μm]": RectangleCoordinates.from_box(0, 150, short_box)
+        }
+
     }
 
 
