@@ -71,7 +71,7 @@ class Tables:
             "Nabłonek rogówki [μm]": RectangleCoordinates.from_box(133, 170, short_box)
         },
         "Korekcja IOP": {
-            "Korekcja IOP [mmHg]": RectangleCoordinates.from_box(232, 2, short_box)
+            "Korekcja IOP [mmHg]": RectangleCoordinates.from_box(238, 2, short_box)
         }
     }
 
