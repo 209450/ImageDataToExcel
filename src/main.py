@@ -1,7 +1,9 @@
+import json
 import sys
 import os
 import easyocr
 import numpy as np
+from PIL import Image
 
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
@@ -9,12 +11,11 @@ from data_structures.file_type import check_input_file_type
 from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinates
 from gui.image_with_rectangles_window import ImageWindowWithRectangles
 from gui.scanned_data_check_dialog import ScannedDataCheckDialog
-from ocr.crop_image import crop_image_by_rectangle_coordinates_with
 from ocr.read_text_from_image import read_text_from_image_rectangles
 
 
-def open_change_rectangle_window(input_table_rectangles):
-    image_window = ImageWindowWithRectangles(input_file_path)
+def open_change_rectangle_window(image_path, input_table_rectangles):
+    image_window = ImageWindowWithRectangles(image_path)
     image_window.show()
 
     placement_of_rectangles_is_not_correct = True
@@ -44,6 +45,7 @@ def open_change_rectangle_window(input_table_rectangles):
     image_window.deleteLater()
     return input_table_rectangles
 
+
 if __name__ == '__main__':
     print("Program started")
     print(f"current dir: {os.getcwd()}")
@@ -60,34 +62,56 @@ if __name__ == '__main__':
         print("Program ended")
         sys.exit(1)
 
-    output_data = {
-        "Min. grubość w dołeczku [μm]": "",
-        "Centralny sektor [μm]": "",
-        "Średnia grubość [μm]": "",
-        "Objętość [mm3]": ""
-    }
+    config_path = "config.json"
+    with open(config_path, encoding="utf-8") as file:
+        loaded_json = json.load(file)
+        output_data = loaded_json[file_type.value[0]].copy()
 
+    input_image = Image.open(input_file_path)
+
+    output_tables = {}
     output_data_is_not_correct = True
     app_image_window = QApplication(sys.argv)
     while output_data_is_not_correct:
 
-        table_rectangles = open_change_rectangle_window(table_rectangles)
+        table_rectangles = open_change_rectangle_window(input_file_path, table_rectangles)
         app_image_window.closeAllWindows()
 
-        read_text = read_text_from_image_rectangles(input_file_path, table_rectangles)
-        # read_text[0] - 1 table
-        for key, text in zip(output_data.keys(), read_text[0]):
-            output_data[key] = text
+        tables_names = file_type.value[2]
+        output_tables_names = dict.fromkeys(tables_names, "")
+        output_tables_fields = file_type.value[2]
+        for table_name, rectangle in zip(output_tables_names, table_rectangles):
+            output_tables[table_name] = read_text_from_image_rectangles(output_tables_fields[table_name], input_image,
+                                                                        rectangle)
 
-        for rectangle in table_rectangles:
-            dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_data)
+        # for table_name, table_data in zip(output_data.keys(), tables_read_text):
+        #     for label, text in zip(output_data[table_name].keys(), table_data):
+        #         output_data[table_name][label] = text
+
+        dialog_results = []
+        for table_name, rectangle in zip(output_tables.keys(), table_rectangles):
+            dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_tables[table_name])
             dialog.show()
 
             dialog_result = dialog.exec_()
+            dialog_results.append(dialog_result)
             if dialog_result:
-                output_data = dialog.get_fields_values()
-                output_data_is_not_correct = False
-            else:
-                output_data_is_not_correct = True
+                output_tables[table_name] = dialog.get_fields_values()
 
-    print(output_data)
+        if 0 in dialog_results:
+            output_data_is_not_correct = True
+        else:
+            output_data_is_not_correct = False
+
+
+
+    # for table in output_tables:
+    #     for key, value in table.items():
+    #         print(f"{key}:{value}")
+
+    for key, value in output_tables.items():
+        print(f"{key}:{value}")
+
+    # for table_name in output_data.keys():
+    #     for key, value in output_data[table_name].values():
+    #         print(f"{key}:{value}")

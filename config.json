@@ -1,0 +1,106 @@
+{
+  "retina": {
+    "Pomiary ILM - OS/RPE": {
+      "Centralny sektor [μm]": "",
+      "Min. grubość w dołeczku [μm]": "",
+      "Średnia grubość [μm]": "",
+      "Objętość [mm3]": ""
+    }
+  },
+  "anterior_radial_l": {
+    "Grubość rogówki nasz szer. 5mm": {
+      "Centralny sektor [μm]": "",
+      "Minimum [μm]": "",
+      "Mediana [μm}": "",
+      "Min - Mediana [μm]": "",
+      "Sn - IT [μm]": "",
+      "S - I [μm]": "",
+      "ST - IN [μm]": "",
+      "T - N [μm]": ""
+    }
+  },
+  "anterior_radial_r": {
+    "Grubość rogówki nasz szer. 5mm": {
+      "Centralny sektor [μm]": "",
+      "Minimum [μm]": "",
+      "Mediana [μm}": "",
+      "Min - Mediana [μm]": "",
+      "Sn - IT [μm]": "",
+      "S - I [μm]": "",
+      "ST - IN [μm]": "",
+      "T - N [μm]": ""
+    }
+  },
+  "disc_3d_r": {
+    "Powierzchnia": {
+      "Tarcza [mm2]": "",
+      "Zagłębienie [mm2]": "",
+      "Zagłębienie [mm2] Norma Min": "",
+      "Zagłębienie [mm2] Norma Max": "",
+      "Rąbek [mm2]": "",
+      "Rąbek Norma [mm2] Min": "",
+      "Rąbek Norma [mm2] Max": "",
+      "Cup/Disc": "",
+      "Cup/Disc Norma Min": "",
+      "Cup/Disc Norma Max": "",
+      "Zagłębienie [mm3]": "",
+      "Zagłębienie [mm3] Norma Min": "",
+      "Zagłębienie [mm3] Norma Max": "",
+      "Rąbek [mm3]": "",
+      "Rąbek [mm3] Norma Min": "",
+      "Rąbek [mm3] Norma Max": "",
+      "Śr. głęb. zagłębienia [mm]": "",
+      "Śr. głęb. zagłębienia [mm] Norma Min": "",
+      "Śr. głęb. zagłębienia [mm] Norma Max": "",
+      "Pozioma średnica tarczy [mm]": "",
+      "Pionowa średnia tarczy [mm]": "",
+      "Średnica tarczy [mm]": "",
+      "Pozioma średnica zagłębienia [mm]": "",
+      "Pionowa średnica zagłębienia [mm]": "",
+      "średnica zagłębienia [mm]": "",
+      "C/D poziomo": "",
+      "c/D pionowo": "",
+      "Tarcza V/H": "",
+      "Zagłębienie V/H": "",
+      "R/D minimum": "",
+      "Brak rąbka []": "",
+      "DDLS": ""
+    }
+  },
+  "disc_3d_l": {
+    "Powierzchnia": {
+      "Tarcza [mm2]": "",
+      "Zagłębienie [mm2]": "",
+      "Zagłębienie [mm2] Norma Min": "",
+      "Zagłębienie [mm2] Norma Max": "",
+      "Rąbek [mm2]": "",
+      "Rąbek Norma [mm2] Min": "",
+      "Rąbek Norma [mm2] Max": "",
+      "Cup/Disc": "",
+      "Cup/Disc Norma Min": "",
+      "Cup/Disc Norma Max": "",
+      "Zagłębienie [mm3]": "",
+      "Zagłębienie [mm3] Norma Min": "",
+      "Zagłębienie [mm3] Norma Max": "",
+      "Rąbek [mm3]": "",
+      "Rąbek [mm3] Norma Min": "",
+      "Rąbek [mm3] Norma Max": "",
+      "Śr. głęb. zagłębienia [mm]": "",
+      "Śr. głęb. zagłębienia [mm] Norma Min": "",
+      "Śr. głęb. zagłębienia [mm] Norma Max": "",
+      "Pozioma średnica tarczy [mm]": "",
+      "Pionowa średnia tarczy [mm]": "",
+      "Średnica tarczy [mm]": "",
+      "Pozioma średnica zagłębienia [mm]": "",
+      "Pionowa średnica zagłębienia [mm]": "",
+      "średnica zagłębienia [mm]": "",
+      "C/D poziomo": "",
+      "c/D pionowo": "",
+      "Tarcza V/H": "",
+      "Zagłębienie V/H": "",
+      "R/D minimum": "",
+      "Brak rąbka []": "",
+      "DDLS": ""
+    }
+  }
+}
