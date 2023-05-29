@@ -7,12 +7,14 @@ import numpy as np
 from PIL import Image
 
 from PyQt5.QtWidgets import QApplication, QMessageBox
+from openpyxl import Workbook, load_workbook
 
 from data_structures.file_type import check_input_file_type
 from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinates
 from gui.image_with_rectangles_window import ImageWindowWithRectangles
 from gui.scanned_data_check_dialog import ScannedDataCheckDialog
 from ocr.read_text_from_image import read_text_from_image_rectangles
+from output.excel_output import get_current_sheet, create_new_sheet
 
 
 def open_change_rectangle_window(image_path, input_table_rectangles):
@@ -62,9 +64,10 @@ if __name__ == '__main__':
     print(f"current dir: {os.getcwd()}")
 
     args = parse_args()
+    input_file_path = args.input
+    output_file_path = args.output
     print(args.input)
 
-    input_file_path = args.input
     file_type = check_input_file_type(input_file_path)
     print(file_type)
 
@@ -112,5 +115,30 @@ if __name__ == '__main__':
         else:
             output_data_is_not_correct = False
 
-    for key, value in output_tables.items():
-        print(f"{key}:{value}")
+    # for key, value in output_tables.items():
+    #     print(f"{key}:{value}")
+
+    cols_labels = ["file name"]
+    for table_cols in output_tables.values():
+        cols = list(table_cols.keys())
+        cols_labels.extend(cols)
+
+    output = [input_file_path]
+    for table_cols in output_tables.values():
+        output.extend(table_cols.values())
+
+    if not os.path.exists(output_file_path):
+        work_book = Workbook()
+        work_book.save(output_file_path)
+    else:
+        work_book = load_workbook(output_file_path)
+
+    sheet_name = file_type.value[0]
+    if sheet_name not in work_book.sheetnames:
+        current_sheet = create_new_sheet(work_book, sheet_name)
+        current_sheet.append(cols_labels)
+    else:
+        current_sheet = get_current_sheet(work_book, sheet_name)
+    current_sheet.append(output)
+
+    work_book.save(output_file_path)
