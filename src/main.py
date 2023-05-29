@@ -1,3 +1,4 @@
+import argparse
 import json
 import sys
 import os
@@ -46,12 +47,24 @@ def open_change_rectangle_window(image_path, input_table_rectangles):
     return input_table_rectangles
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", action="store", dest="input",
+                        help="path to image file", required=True)
+    parser.add_argument("--output", action="store", dest="output",
+                        help="path to output excel file", required=True)
+
+    return parser.parse_args()
+
+
 if __name__ == '__main__':
     print("Program started")
     print(f"current dir: {os.getcwd()}")
-    print(sys.argv[1])
 
-    input_file_path = sys.argv[1]
+    args = parse_args()
+    print(args.input)
+
+    input_file_path = args.input
     file_type = check_input_file_type(input_file_path)
     print(file_type)
 
@@ -84,10 +97,6 @@ if __name__ == '__main__':
             output_tables[table_name] = read_text_from_image_rectangles(output_tables_fields[table_name], input_image,
                                                                         rectangle)
 
-        # for table_name, table_data in zip(output_data.keys(), tables_read_text):
-        #     for label, text in zip(output_data[table_name].keys(), table_data):
-        #         output_data[table_name][label] = text
-
         dialog_results = []
         for table_name, rectangle in zip(output_tables.keys(), table_rectangles):
             dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_tables[table_name])
@@ -103,15 +112,5 @@ if __name__ == '__main__':
         else:
             output_data_is_not_correct = False
 
-
-
-    # for table in output_tables:
-    #     for key, value in table.items():
-    #         print(f"{key}:{value}")
-
     for key, value in output_tables.items():
         print(f"{key}:{value}")
-
-    # for table_name in output_data.keys():
-    #     for key, value in output_data[table_name].values():
-    #         print(f"{key}:{value}")
