@@ -1,3 +1,4 @@
+import argparse
 import json
 import sys
 import os
@@ -6,12 +7,14 @@ import numpy as np
 from PIL import Image
 
 from PyQt5.QtWidgets import QApplication, QMessageBox
+from openpyxl import Workbook, load_workbook
 
 from data_structures.file_type import check_input_file_type
 from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinates
 from gui.image_with_rectangles_window import ImageWindowWithRectangles
 from gui.scanned_data_check_dialog import ScannedDataCheckDialog
 from ocr.read_text_from_image import read_text_from_image_rectangles
+from output.excel_output import get_current_sheet, create_new_sheet
 
 
 def open_change_rectangle_window(image_path, input_table_rectangles):
@@ -46,12 +49,25 @@ def open_change_rectangle_window(image_path, input_table_rectangles):
     return input_table_rectangles
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", action="store", dest="input",
+                        help="path to image file", required=True)
+    parser.add_argument("--output", action="store", dest="output",
+                        help="path to output excel file", required=True)
+
+    return parser.parse_args()
+
+
 if __name__ == '__main__':
     print("Program started")
     print(f"current dir: {os.getcwd()}")
-    print(sys.argv[1])
 
-    input_file_path = sys.argv[1]
+    args = parse_args()
+    input_file_path = args.input
+    output_file_path = args.output
+    print(args.input)
+
     file_type = check_input_file_type(input_file_path)
     print(file_type)
 
@@ -84,10 +100,6 @@ if __name__ == '__main__':
             output_tables[table_name] = read_text_from_image_rectangles(output_tables_fields[table_name], input_image,
                                                                         rectangle)
 
-        # for table_name, table_data in zip(output_data.keys(), tables_read_text):
-        #     for label, text in zip(output_data[table_name].keys(), table_data):
-        #         output_data[table_name][label] = text
-
         dialog_results = []
         for table_name, rectangle in zip(output_tables.keys(), table_rectangles):
             dialog = ScannedDataCheckDialog(input_file_path, rectangle, output_tables[table_name])
@@ -103,15 +115,30 @@ if __name__ == '__main__':
         else:
             output_data_is_not_correct = False
 
+    # for key, value in output_tables.items():
+    #     print(f"{key}:{value}")
 
+    cols_labels = ["file name"]
+    for table_cols in output_tables.values():
+        cols = list(table_cols.keys())
+        cols_labels.extend(cols)
 
-    # for table in output_tables:
-    #     for key, value in table.items():
-    #         print(f"{key}:{value}")
+    output = [input_file_path]
+    for table_cols in output_tables.values():
+        output.extend(table_cols.values())
 
-    for key, value in output_tables.items():
-        print(f"{key}:{value}")
+    if not os.path.exists(output_file_path):
+        work_book = Workbook()
+        work_book.save(output_file_path)
+    else:
+        work_book = load_workbook(output_file_path)
 
-    # for table_name in output_data.keys():
-    #     for key, value in output_data[table_name].values():
-    #         print(f"{key}:{value}")
+    sheet_name = file_type.value[0]
+    if sheet_name not in work_book.sheetnames:
+        current_sheet = create_new_sheet(work_book, sheet_name)
+        current_sheet.append(cols_labels)
+    else:
+        current_sheet = get_current_sheet(work_book, sheet_name)
+    current_sheet.append(output)
+
+    work_book.save(output_file_path)
