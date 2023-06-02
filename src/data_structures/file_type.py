@@ -78,8 +78,7 @@ class Tables:
 
 class FileType(Enum):
     RETINA = ["retina", [RectangleCoordinates(263, 883, 333, 964)], Tables.RETINA]
-    DISC_3D_DWOJE = ["disc_3d_dwoje", [RectangleCoordinates(725, 226, 921, 496),
-                                       RectangleCoordinates(778, 811, 920, 873)]]
+    DISC_3D_DWOJE = ["disc_3d_dwoje"]
     DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
     DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
     ANTERIOR_RADIAL_L = ["anterior_radial_l",

@@ -59,39 +59,36 @@ def parse_args():
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+def process_file(input_file_path, output_file_path):
+    global output
     print("Program started")
     print(f"current dir: {os.getcwd()}")
-
-    args = parse_args()
-    input_file_path = args.input
-    output_file_path = args.output
-    print(args.input)
-
+    # args = parse_args()
+    # input_file_path = args.input
+    # output_file_path = args.output
+    # print(args.input)
     file_type = check_input_file_type(input_file_path)
     print(file_type)
-
     try:
         table_rectangles = list(file_type.value[1])
     except IndexError:
         print(f"{file_type} can not be processed")
         print("Program ended")
-        sys.exit(1)
+        return -1
 
-    config_path = "config.json"
-    with open(config_path, encoding="utf-8") as file:
-        loaded_json = json.load(file)
-        output_data = loaded_json[file_type.value[0]].copy()
+    # config_path = "config.json"
+    # with open(config_path, encoding="utf-8") as file:
+    #     loaded_json = json.load(file)
+    #     output_data = loaded_json[file_type.value[0]].copy()
 
     input_image = Image.open(input_file_path)
-
     output_tables = {}
     output_data_is_not_correct = True
-    app_image_window = QApplication(sys.argv)
+    # app_image_window = QApplication(sys.argv)
     while output_data_is_not_correct:
 
         table_rectangles = open_change_rectangle_window(input_file_path, table_rectangles)
-        app_image_window.closeAllWindows()
+        # app_image_window.closeAllWindows()
 
         tables_names = file_type.value[2]
         output_tables_names = dict.fromkeys(tables_names, "")
@@ -110,14 +107,14 @@ if __name__ == '__main__':
             if dialog_result:
                 output_tables[table_name] = dialog.get_fields_values()
 
-        if 0 in dialog_results:
-            output_data_is_not_correct = True
-        else:
-            output_data_is_not_correct = False
+        # if 0 in dialog_results:
+        #     output_data_is_not_correct = True
+        # else:
+        #     output_data_is_not_correct = False
+        output_data_is_not_correct = False
 
     # for key, value in output_tables.items():
     #     print(f"{key}:{value}")
-
     cols_labels = ["file name"]
     for table_cols in output_tables.values():
         cols = list(table_cols.keys())
@@ -126,7 +123,6 @@ if __name__ == '__main__':
     output = [input_file_path]
     for table_cols in output_tables.values():
         output.extend(table_cols.values())
-
     if not os.path.exists(output_file_path):
         work_book = Workbook()
         work_book.save(output_file_path)
@@ -140,5 +136,18 @@ if __name__ == '__main__':
     else:
         current_sheet = get_current_sheet(work_book, sheet_name)
     current_sheet.append(output)
-
     work_book.save(output_file_path)
+    work_book.close()
+
+
+class PyProcessor:
+
+    def process(self, input_file, output_file):
+        process_file(input_file, output_file)
+
+
+if __name__ == '__main__':
+    args = parse_args()
+    input_file_path = args.input
+    output_file_path = args.output
+    process_file(input_file_path, output_file_path)
