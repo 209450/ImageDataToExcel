@@ -12,7 +12,7 @@ def read_text_from_image_rectangles(table_fields, input_image, table_rectangles)
     # convert image to greyscale
     image_of_table = image_of_table.convert('L')
 
-    languages = ["en"]
+    languages = ["en", "pl"]
     reader = easyocr.Reader(languages)
 
     read_data = {}

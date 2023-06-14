@@ -6,7 +6,15 @@ from data_structures.rectangle_coordinates import RectangleCoordinates
 
 class Tables:
     short_box = (46, 23)
+    middle_box = (114, 27)
+    long_box = (194, 27)
     RETINA = {
+        "Dane Osobowe": {
+            "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
+            "Data Urodzenia": RectangleCoordinates.from_box(96, 70, long_box),
+            "Data Badania": RectangleCoordinates.from_box(456, 47, middle_box),
+            "Oko": RectangleCoordinates.from_box(430, 95, middle_box),
+        },
         "Pomiary ILM - OS/RPE": {
             "Centralny sektor [μm]": RectangleCoordinates.from_box(11, 0, short_box),
             "Min. grubość w dołeczku [μm]": RectangleCoordinates.from_box(11, 18, short_box),
@@ -16,6 +24,12 @@ class Tables:
 
     }
     DISC_3D = {
+        "Dane Osobowe": {
+            "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
+            "Data Urodzenia": RectangleCoordinates.from_box(96, 70, long_box),
+            "Data Badania": RectangleCoordinates.from_box(456, 47, middle_box),
+            "Oko": RectangleCoordinates.from_box(430, 95, middle_box),
+        },
         "Powierzchnia": {
             "Tarcza [mm2]": RectangleCoordinates.from_box(8, 0, short_box),
             "Zagłębienie [mm2]": RectangleCoordinates.from_box(8, 21, short_box),
@@ -55,8 +69,69 @@ class Tables:
         }
 
     }
+    DISC_3D_DWOJE = {
+        "Dane Osobowe": {
+            "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
+            "Data Urodzenia": RectangleCoordinates.from_box(96, 70, long_box),
+            "Data Badania": RectangleCoordinates.from_box(456, 47, middle_box),
+            "Oko": RectangleCoordinates.from_box(430, 95, middle_box),
+        },
+        "Powierzchnia tarczy": {
+            # Prawe
+            "Prawe Powierz. tarczy [mm2]": RectangleCoordinates.from_box(166, 16, short_box),
+            "Prawe Powierz. rąbka [mm2]": RectangleCoordinates.from_box(166, 35, short_box),
+            "Prawe Powierz. zagłębienia [mm2]": RectangleCoordinates.from_box(166, 54, short_box),
+            "Prawe Objęt. rąbka [mm3]": RectangleCoordinates.from_box(166, 74, short_box),
+            "Prawe Objęt. zagłębienia [mm3]": RectangleCoordinates.from_box(166, 92, short_box),
+            "Prawe Śr. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(166, 111, short_box),
+            "Prawe Maks. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(166, 130, short_box),
+            "Prawe C/D powierzchnia": RectangleCoordinates.from_box(166, 149, short_box),
+            "Prawe C/D pionowo": RectangleCoordinates.from_box(166, 168, short_box),
+            "Prawe C/D poziomo": RectangleCoordinates.from_box(166, 188, short_box),
+            "Prawe Zagłębienie V/H": RectangleCoordinates.from_box(166, 207, short_box),
+            "Prawe R/D minimum": RectangleCoordinates.from_box(166, 225, short_box),
+            "Prawe Brak rąbka [°]": RectangleCoordinates.from_box(166, 244, short_box),
+            "Prawe DDLS": RectangleCoordinates.from_box(166, 264, short_box),
+            # Lewe
+            "Lewe Powierz. tarczy [mm2]": RectangleCoordinates.from_box(219, 16, short_box),
+            "Lewe Powierz. rąbka [mm2]": RectangleCoordinates.from_box(219, 35, short_box),
+            "Lewe Powierz. zagłębienia [mm2]": RectangleCoordinates.from_box(219, 54, short_box),
+            "Lewe Objęt. rąbka [mm3]": RectangleCoordinates.from_box(219, 74, short_box),
+            "Lewe Objęt. zagłębienia [mm3]": RectangleCoordinates.from_box(219, 92, short_box),
+            "Lewe Śr. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(219, 111, short_box),
+            "Lewe Maks. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(219, 130, short_box),
+            "Lewe C/D powierzchnia": RectangleCoordinates.from_box(219, 149, short_box),
+            "Lewe C/D pionowo": RectangleCoordinates.from_box(219, 168, short_box),
+            "Lewe C/D poziomo": RectangleCoordinates.from_box(219, 188, short_box),
+            "Lewe Zagłębienie V/H": RectangleCoordinates.from_box(219, 207, short_box),
+            "Lewe R/D minimum": RectangleCoordinates.from_box(219, 225, short_box),
+            "Lewe Brak rąbka [°]": RectangleCoordinates.from_box(219, 244, short_box),
+            "Lewe DDLS": RectangleCoordinates.from_box(219, 264, short_box),
+            # Norma
+            "Norma Powierz. rąbka [mm2] Min": RectangleCoordinates.from_box(264, 36, short_box),
+            "Norma Powierz. rąbka [mm2] Max": RectangleCoordinates.from_box(308, 35, short_box),
+            "Norma Powierz. zagłębienia [mm2] Min": RectangleCoordinates.from_box(264, 54, short_box),
+            "Norma Powierz. zagłębienia [mm2] Max": RectangleCoordinates.from_box(308, 54, short_box),
+            "Norma Objęt. rąbka [mm3] Min": RectangleCoordinates.from_box(264, 74, short_box),
+            "Norma Objęt. rąbka [mm3] Max": RectangleCoordinates.from_box(308, 74, short_box),
+            "Norma Objęt. zagłębienia [mm3] Min": RectangleCoordinates.from_box(264, 92, short_box),
+            "Norma Objęt. zagłębienia [mm3] Max": RectangleCoordinates.from_box(308, 92, short_box),
+            "Norma Śr. głęb. zagłębienia [mm3] Min": RectangleCoordinates.from_box(264, 111, short_box),
+            "Norma Śr. głęb. zagłębienia [mm3] Max": RectangleCoordinates.from_box(308, 111, short_box),
+            "Norma Maks. głęb. zagłębienia [mm3] Min": RectangleCoordinates.from_box(264, 130, short_box),
+            "Norma Maks. głęb. zagłębienia [mm3] Max": RectangleCoordinates.from_box(308, 130, short_box),
+            "Norma C/D powierzchnia Min": RectangleCoordinates.from_box(264, 149, short_box),
+            "Norma C/D powierzchnia Max": RectangleCoordinates.from_box(308, 149, short_box)
+        }
+    }
 
     ANTERIOR_RADIAL = {
+        "Dane Osobowe": {
+            "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
+            "Data Urodzenia": RectangleCoordinates.from_box(96, 70, long_box),
+            "Data Badania": RectangleCoordinates.from_box(456, 47, middle_box),
+            "Oko": RectangleCoordinates.from_box(430, 95, middle_box),
+        },
         "Tabela pachymetryczna": {
             "Centralny sektor [μm]": RectangleCoordinates.from_box(0, 0, short_box),
             "Minimum [μm]": RectangleCoordinates.from_box(0, 18, short_box),
@@ -77,16 +152,21 @@ class Tables:
 
 
 class FileType(Enum):
-    RETINA = ["retina", [RectangleCoordinates(263, 883, 333, 964)], Tables.RETINA]
-    DISC_3D_DWOJE = ["disc_3d_dwoje"]
-    DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
-    DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(803, 232, 984, 866)], Tables.DISC_3D]
+    RETINA = ["retina", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(263, 883, 333, 964)], Tables.RETINA]
+    DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(803, 232, 984, 866)],
+                 Tables.DISC_3D]
+    DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(803, 232, 984, 866)],
+                 Tables.DISC_3D]
+    DISC_3D_DWOJE = ["disc_3d_dwoje", [RectangleCoordinates(0, 0, 573, 118),
+                                       RectangleCoordinates(565, 207, 919, 495)], Tables.DISC_3D_DWOJE]
     ANTERIOR_RADIAL_L = ["anterior_radial_l",
-                         [RectangleCoordinates(256, 698, 304, 871), RectangleCoordinates(701, 638, 1067, 973),
+                         [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(256, 698, 304, 871),
+                          RectangleCoordinates(701, 638, 1067, 973),
                           RectangleCoordinates(1069, 197, 1432, 347)],
                          Tables.ANTERIOR_RADIAL]
     ANTERIOR_RADIAL_R = ["anterior_radial_r",
-                         [RectangleCoordinates(256, 698, 304, 871), RectangleCoordinates(701, 638, 1067, 973),
+                         [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(256, 698, 304, 871),
+                          RectangleCoordinates(701, 638, 1067, 973),
                           RectangleCoordinates(1069, 197, 1432, 347)],
                          Tables.ANTERIOR_RADIAL]
     DISC_ANGIO = ["disc_angio"]

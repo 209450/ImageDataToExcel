@@ -6,7 +6,7 @@ from gui.horizontal_qline_edit_with_label import HorizontalQLineEditWithLabel
 
 
 class ScannedDataCheckDialog(QDialog):
-    MAX_ROWS_TABLE_DATA_CONTAINER = 10
+    MAX_ROWS_TABLE_DATA_CONTAINER = 20
     LEFT_MARGIN = -300
 
     def __init__(self, input_image_path, rectangle_coordinates, table_data):

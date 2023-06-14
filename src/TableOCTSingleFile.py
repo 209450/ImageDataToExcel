@@ -14,7 +14,7 @@ from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinat
 from gui.image_with_rectangles_window import ImageWindowWithRectangles
 from gui.scanned_data_check_dialog import ScannedDataCheckDialog
 from ocr.read_text_from_image import read_text_from_image_rectangles
-from output.excel_output import get_current_sheet, create_new_sheet
+from output_formats.excel_output import get_current_sheet, create_new_sheet
 
 
 def open_change_rectangle_window(image_path, input_table_rectangles):
@@ -54,7 +54,7 @@ def parse_args():
     parser.add_argument("--input", action="store", dest="input",
                         help="path to image file", required=True)
     parser.add_argument("--output", action="store", dest="output",
-                        help="path to output excel file", required=True)
+                        help="path to output_formats excel file", required=True)
 
     return parser.parse_args()
 
