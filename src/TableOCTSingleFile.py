@@ -13,7 +13,7 @@ from data_structures.file_type import check_input_file_type
 from gui.change_rectangle_coordinates_dialog import FormChangeRectangleCoordinates
 from gui.image_with_rectangles_window import ImageWindowWithRectangles
 from gui.scanned_data_check_dialog import ScannedDataCheckDialog
-from ocr.read_text_from_image import read_text_from_image_rectangles
+from ocr.ocr import read_text_from_image_rectangles
 from output_formats.excel_output import get_current_sheet, create_new_sheet
 
 
