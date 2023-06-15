@@ -69,6 +69,7 @@ class Tables:
         }
 
     }
+
     DISC_3D_DWOJE = {
         "Dane Osobowe": {
             "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
@@ -122,9 +123,15 @@ class Tables:
             "Norma Maks. głęb. zagłębienia [mm3] Max": RectangleCoordinates.from_box(308, 130, short_box),
             "Norma C/D powierzchnia Min": RectangleCoordinates.from_box(264, 149, short_box),
             "Norma C/D powierzchnia Max": RectangleCoordinates.from_box(308, 149, short_box)
-        }
+        },
+        "Parametry RNFL": {
+            "Prawe Średnia NSTIN [μm]": RectangleCoordinates.from_box(225, 19, short_box),
+            "Prawe Odchylenie standardowe [μm]": RectangleCoordinates.from_box(225, 40, short_box),
+            "Lewe Średnia NSTIN [μm]": RectangleCoordinates.from_box(295, 19, short_box),
+            "Lewe Odchylenie standardowe [μm]": RectangleCoordinates.from_box(295, 40, short_box),
+            "Symetria między oczami": RectangleCoordinates.from_box(259, 60, short_box),
+        },
     }
-
     ANTERIOR_RADIAL = {
         "Dane Osobowe": {
             "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
@@ -160,7 +167,9 @@ class FileType(Enum):
     DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(803, 232, 984, 866)],
                  Tables.DISC_3D]
     DISC_3D_DWOJE = ["disc_3d_dwoje", [RectangleCoordinates(0, 0, 573, 118),
-                                       RectangleCoordinates(565, 207, 919, 495)], Tables.DISC_3D_DWOJE]
+                                       RectangleCoordinates(565, 207, 919, 495),
+                                       RectangleCoordinates(567, 789, 924, 874)
+                                       ], Tables.DISC_3D_DWOJE]
     ANTERIOR_RADIAL_L = ["anterior_radial_l",
                          [RectangleCoordinates(0, 0, 573, 118),
                           RectangleCoordinates(52, 680, 308, 776),
