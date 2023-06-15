@@ -19,7 +19,7 @@ def read_text_from_image_rectangles(table_fields, input_image, table_rectangles)
     image_of_table = image_of_table.convert('L')
 
     languages = ["en", "pl"]
-    reader = easyocr.Reader(languages)
+    reader = easyocr.Reader(languages, verbose=False)
 
     read_data = {}
     for col_label, coordinates in table_fields.items():
