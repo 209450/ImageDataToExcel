@@ -23,8 +23,15 @@ if __name__ == '__main__':
     files_paths = [os.path.join(directory_path, file_name) for file_name in files_names]
 
     errors = []
-    for input_file in files_paths:
-        result = process_file(input_file, output_file_path)
+    number_file_paths = len(files_paths)
+    for file_index, input_file in enumerate(files_paths,1):
+        file_name = os.path.basename(input_file)
+        print(f"Processing {file_name}, {file_index}/{number_file_paths}")
+
+        try:
+            result = process_file(input_file, output_file_path)
+        except Exception:
+            result = -1
 
         if result != 0:
             errors.append(input_file)
