@@ -7,7 +7,7 @@ from data_structures.rectangle_coordinates import RectangleCoordinates
 class Tables:
     short_box = (46, 23)
     middle_box = (114, 27)
-    long_box = (194, 27)
+    long_box = (250, 27)
     RETINA = {
         "Dane Osobowe": {
             "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
@@ -86,12 +86,12 @@ class Tables:
             "Prawe Śr. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(166, 111, short_box),
             "Prawe Maks. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(166, 130, short_box),
             "Prawe C/D powierzchnia": RectangleCoordinates.from_box(166, 149, short_box),
-            "Prawe C/D pionowo": RectangleCoordinates.from_box(166, 168, short_box),
+            "Prawe C/D pionowo": RectangleCoordinates.from_box(166, 170, short_box),
             "Prawe C/D poziomo": RectangleCoordinates.from_box(166, 188, short_box),
             "Prawe Zagłębienie V/H": RectangleCoordinates.from_box(166, 207, short_box),
             "Prawe R/D minimum": RectangleCoordinates.from_box(166, 225, short_box),
             "Prawe Brak rąbka [°]": RectangleCoordinates.from_box(166, 244, short_box),
-            "Prawe DDLS": RectangleCoordinates.from_box(166, 264, short_box),
+            "Prawe DDLS": RectangleCoordinates.from_box(166, 262, short_box),
             # Lewe
             "Lewe Powierz. tarczy [mm2]": RectangleCoordinates.from_box(219, 16, short_box),
             "Lewe Powierz. rąbka [mm2]": RectangleCoordinates.from_box(219, 35, short_box),
@@ -101,12 +101,12 @@ class Tables:
             "Lewe Śr. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(219, 111, short_box),
             "Lewe Maks. głęb. zagłębienia [mm3]": RectangleCoordinates.from_box(219, 130, short_box),
             "Lewe C/D powierzchnia": RectangleCoordinates.from_box(219, 149, short_box),
-            "Lewe C/D pionowo": RectangleCoordinates.from_box(219, 168, short_box),
+            "Lewe C/D pionowo": RectangleCoordinates.from_box(219, 170, short_box),
             "Lewe C/D poziomo": RectangleCoordinates.from_box(219, 188, short_box),
             "Lewe Zagłębienie V/H": RectangleCoordinates.from_box(219, 207, short_box),
             "Lewe R/D minimum": RectangleCoordinates.from_box(219, 225, short_box),
             "Lewe Brak rąbka [°]": RectangleCoordinates.from_box(219, 244, short_box),
-            "Lewe DDLS": RectangleCoordinates.from_box(219, 264, short_box),
+            "Lewe DDLS": RectangleCoordinates.from_box(219, 262, short_box),
             # Norma
             "Norma Powierz. rąbka [mm2] Min": RectangleCoordinates.from_box(264, 36, short_box),
             "Norma Powierz. rąbka [mm2] Max": RectangleCoordinates.from_box(308, 35, short_box),
@@ -132,15 +132,17 @@ class Tables:
             "Data Badania": RectangleCoordinates.from_box(456, 47, middle_box),
             "Oko": RectangleCoordinates.from_box(430, 95, middle_box),
         },
-        "Tabela pachymetryczna": {
-            "Centralny sektor [μm]": RectangleCoordinates.from_box(0, 0, short_box),
-            "Minimum [μm]": RectangleCoordinates.from_box(0, 18, short_box),
-            "Mediana [μm}": RectangleCoordinates.from_box(0, 37, short_box),
-            "Min - Mediana [μm]": RectangleCoordinates.from_box(0, 58, short_box),
-            "Sn - IT [μm]": RectangleCoordinates.from_box(0, 94, short_box),
-            "S - I [μm]": RectangleCoordinates.from_box(0, 113, short_box),
-            "ST - IN [μm]": RectangleCoordinates.from_box(0, 133, short_box),
-            "T - N [μm]": RectangleCoordinates.from_box(0, 150, short_box)
+        "Grubość rogówki na szer. 5 mm": {
+            "Centralny sektor [μm]": RectangleCoordinates.from_box(205, 16, short_box),
+            "Minimum [μm]": RectangleCoordinates.from_box(205, 35, short_box),
+            "Mediana [μm}": RectangleCoordinates.from_box(205, 54, short_box),
+            "Min - Mediana [μm]": RectangleCoordinates.from_box(205, 73, short_box),
+        },
+        "Analiza symetrii sektorów": {
+            "Sn - IT [μm]": RectangleCoordinates.from_box(205, 15, short_box),
+            "S - I [μm]": RectangleCoordinates.from_box(205, 34, short_box),
+            "ST - IN [μm]": RectangleCoordinates.from_box(205, 53, short_box),
+            "T - N [μm]": RectangleCoordinates.from_box(205, 73, short_box)
         },
         "Nabłonek rogówki": {
             "Nabłonek rogówki [μm]": RectangleCoordinates.from_box(133, 170, short_box)
@@ -160,12 +162,16 @@ class FileType(Enum):
     DISC_3D_DWOJE = ["disc_3d_dwoje", [RectangleCoordinates(0, 0, 573, 118),
                                        RectangleCoordinates(565, 207, 919, 495)], Tables.DISC_3D_DWOJE]
     ANTERIOR_RADIAL_L = ["anterior_radial_l",
-                         [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(256, 698, 304, 871),
+                         [RectangleCoordinates(0, 0, 573, 118),
+                          RectangleCoordinates(52, 680, 308, 776),
+                          RectangleCoordinates(52, 777, 308, 872),
                           RectangleCoordinates(701, 638, 1067, 973),
                           RectangleCoordinates(1069, 197, 1432, 347)],
                          Tables.ANTERIOR_RADIAL]
     ANTERIOR_RADIAL_R = ["anterior_radial_r",
-                         [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(256, 698, 304, 871),
+                         [RectangleCoordinates(0, 0, 573, 118),
+                          RectangleCoordinates(52, 680, 308, 776),
+                          RectangleCoordinates(52, 777, 308, 872),
                           RectangleCoordinates(701, 638, 1067, 973),
                           RectangleCoordinates(1069, 197, 1432, 347)],
                          Tables.ANTERIOR_RADIAL]
