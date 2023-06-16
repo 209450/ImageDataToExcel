@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication, QFileDialog
 from openpyxl import Workbook
 
 from TableOCTSingleFile import process_file
+from gui.continue_program_dialog import ContinueProgramDialog
 
 if __name__ == '__main__':
     print("TableOCT started")
@@ -24,9 +25,16 @@ if __name__ == '__main__':
 
     errors = []
     number_file_paths = len(files_paths)
-    for file_index, input_file in enumerate(files_paths,1):
+    for file_index, input_file in enumerate(files_paths, 1):
         file_name = os.path.basename(input_file)
         print(f"Processing {file_name}, {file_index}/{number_file_paths}")
+
+        dialog = ContinueProgramDialog(f"Do you want to continue with file {file_name}")
+        dialog.show()
+
+        dialog_result = dialog.exec_()
+        if not dialog_result:
+            break
 
         try:
             result = process_file(input_file, output_file_path)
