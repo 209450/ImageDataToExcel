@@ -5,10 +5,11 @@ from data_structures.rectangle_coordinates import RectangleCoordinates
 
 
 class Tables:
+    mini_box = (25, 23)
     short_box = (46, 23)
     middle_box = (114, 27)
     long_box = (250, 27)
-    RETINA = {
+    RETINA_3D = {
         "Dane Osobowe": {
             "Imię i Nazwisko": RectangleCoordinates.from_box(90, 23, long_box),
             "Data Urodzenia": RectangleCoordinates.from_box(96, 70, long_box),
@@ -110,11 +111,11 @@ class Tables:
             "Lewe DDLS": RectangleCoordinates.from_box(219, 262, short_box),
             # Norma
             "Norma Powierz. rąbka [mm2] Min": RectangleCoordinates.from_box(264, 36, short_box),
-            "Norma Powierz. rąbka [mm2] Max": RectangleCoordinates.from_box(308, 35, short_box),
+            "Norma Powierz. rąbka [mm2] Max": RectangleCoordinates.from_box(316, 35, mini_box),
             "Norma Powierz. zagłębienia [mm2] Min": RectangleCoordinates.from_box(264, 54, short_box),
             "Norma Powierz. zagłębienia [mm2] Max": RectangleCoordinates.from_box(308, 54, short_box),
             "Norma Objęt. rąbka [mm3] Min": RectangleCoordinates.from_box(264, 74, short_box),
-            "Norma Objęt. rąbka [mm3] Max": RectangleCoordinates.from_box(308, 74, short_box),
+            "Norma Objęt. rąbka [mm3] Max": RectangleCoordinates.from_box(316, 74, mini_box),
             "Norma Objęt. zagłębienia [mm3] Min": RectangleCoordinates.from_box(264, 92, short_box),
             "Norma Objęt. zagłębienia [mm3] Max": RectangleCoordinates.from_box(308, 92, short_box),
             "Norma Śr. głęb. zagłębienia [mm3] Min": RectangleCoordinates.from_box(264, 111, short_box),
@@ -161,7 +162,8 @@ class Tables:
 
 
 class FileType(Enum):
-    RETINA = ["retina", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(263, 883, 333, 964)], Tables.RETINA]
+    RETINA_3D = ["retina_3d", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(263, 883, 333, 964)],
+                 Tables.RETINA_3D]
     DISC_3D_R = ["disc_3d_r", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(803, 232, 984, 866)],
                  Tables.DISC_3D]
     DISC_3D_L = ["disc_3d_l", [RectangleCoordinates(0, 0, 573, 118), RectangleCoordinates(803, 232, 984, 866)],
@@ -186,6 +188,7 @@ class FileType(Enum):
                          Tables.ANTERIOR_RADIAL]
     DISC_ANGIO = ["disc_angio"]
     ANTERIOR_3D = ["anterior_3d"]
+    RETINA_ANGIO = ["retina_angio"]
     NOT_FOUND = ["not found"]
 
 
